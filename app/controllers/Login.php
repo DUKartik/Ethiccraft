@@ -1,9 +1,9 @@
 <?php
 // 1. Setup & Imports
-require_once __DIR__ . '/headers.php'; 
-require_once 'utils/ApiResponse.php';
-require_once 'utils/ApiError.php';
-require_once 'utils/asyncHandler.php';
+require_once __DIR__ .'/../headers.php'; 
+require_once __DIR__ .'/../utils/ApiResponse.php';
+require_once __DIR__ .'/../utils/ApiError.php';
+require_once __DIR__ .'/../utils/asyncHandler.php';
 
 // 2. Session Configuration (Keep this global as it needs to run before logic)
 $lifetime = 259200; // 3 days

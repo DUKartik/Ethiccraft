@@ -7,9 +7,9 @@ import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import './App.css';
-
+import { API_BASE_URL } from '@env';
 // --- API CONFIGURATION ---
-const API_BASE_URL = "https://ethiccraft.org/backend/Scanner_Events"; 
+const API_BASE_URL = process.env.API_BASE_URL; 
 
 const ENDPOINTS = {
   LOGIN: `${API_BASE_URL}/Login.php`,
