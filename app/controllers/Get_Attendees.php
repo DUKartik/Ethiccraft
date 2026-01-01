@@ -1,9 +1,6 @@
 <?php
 
-require_once __DIR__ .'/../headers.php'; 
-require_once __DIR__ .'/../utils/ApiResponse.php';
-require_once __DIR__ .'/../utils/ApiError.php';
-require_once __DIR__ .'/../utils/asyncHandler.php';
+// (Handled by index.php: headers, utils, config, $conn)
 $getAttendees = asyncHandler(function() use ($conn) {
     $event_id = isset($_GET['event_id']) ? intval($_GET['event_id']) : 0;
 
@@ -14,6 +11,7 @@ $getAttendees = asyncHandler(function() use ($conn) {
 
     $sql = "SELECT 
                 e.id AS booking_id,
+                e.ticket_id,
                 e.event_id,
                 e.user_name,
                 e.email,
@@ -42,11 +40,11 @@ $getAttendees = asyncHandler(function() use ($conn) {
     $attendees = array();
 
     while ($row = $result->fetch_assoc()) {
-        $imagePath = $row['image'] ? "https://ethiccraft.org/uploads/" . $row['image'] : null;
+        $imagePath = (isset($row['image']) && $row['image']) ? "https://ethiccraft.org/uploads/" . $row['image'] : null;
 
         $attendees[] = array(
             "name"   => $row['full_name'],
-            "id"     => $row['id'],      // e.g. "ST-2025"
+            "id"     => $row['ticket_id'] ?? null,      // e.g. "ST-2025"
             "gender" => $row['gender'],    // e.g. "Male"
             "course" => $row['department'],  // e.g. "B.Tech CSE"
             "year"   => $row['year_of_study'],    // e.g. "3rd Year"

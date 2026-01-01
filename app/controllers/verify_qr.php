@@ -1,8 +1,5 @@
 <?php
-require_once __DIR__ .'/../headers.php'; 
-require_once __DIR__ .'/../utils/ApiResponse.php';
-require_once __DIR__ .'/../utils/ApiError.php';
-require_once __DIR__ .'/../utils/asyncHandler.php';
+// (Handled by index.php: headers, utils, config, $conn)
 
 header('Content-Type: application/json');
 $markAttendance = asyncHandler(function() use ($conn) {
